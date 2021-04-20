@@ -6,6 +6,17 @@ const methodOverride = require("method-override");
 
 app.use(morgan("common"));
 
+app.use(express.static("public"));
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+
+app.use(bodyParser.json());
+app.use(methodOverride());
+
 let topMovies = [
   {
     title: "Mystic River",
@@ -47,17 +58,6 @@ app.get("/documentation", (req, res) => {
 app.listen(8080, () => {
   console.log("Your app is listening on port 8080.");
 });
-
-app.use(express.static("public"));
-
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
-app.use(bodyParser.json());
-app.use(methodOverride());
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
