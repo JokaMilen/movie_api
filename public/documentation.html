@@ -4,23 +4,125 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>myFlix</title>
+    <style>
+      table,
+      tr,
+      th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+      }
+    </style>
   </head>
-
   <body>
-    <p>
-      myFlix API:<br />
-      ● Return a list of ALL movies to the user<br />
-      ● Return data (description, genre, director, image URL, whether it’s
-      featured or not) about a single movie by title to the user<br />
-      ● Return data about a genre (description) by name/title (e.g.,
-      “Thriller”)<br />
-      ● Return data about a director (bio, birth year, death year) by name<br />
-      ● Allow new users to register<br />
-      ● Allow users to update their user info (username, password, email, date
-      of birth)<br />
-      ● Allow users to add a movie to their list of favorites<br />
-      ● Allow users to remove a movie from their list of favorites<br />
-      ● Allow existing users to deregister
-    </p>
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>Bussiness logic</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Query parameters</th>
+          <th>Request body data format</th>
+          <th>Response body data format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Return a list of all movies</th>
+          <th>/movies</th>
+          <th>GET</th>
+          <th>None</th>
+          <th>None</th>
+          <th>A JSON object hoding data about all movies</th>
+        </tr>
+        <tr>
+          <th>Return data about single movie by title</th>
+          <th>/movies/[title]</th>
+          <th>GET</th>
+          <th>/movies/:title</th>
+          <th>None</th>
+          <th>
+            A JSON object holding data for a single movie by title, containing
+            description, genre, director, image and if featured.<br />
+            Exampe:<br />
+            { "title":"Mystic River",<br />
+            "description":"The lives of three men who were childhood friends are
+            shattered when one of them has a family tragedy.",<br />
+            "genre":"Crime",<br />
+            "director":"Clint Eastwood",<br />
+            "image":"mysticriver.img",<br />
+            "featured": yes }
+          </th>
+        </tr>
+        <tr>
+          <th>Return data about genre by title</th>
+          <th>/movies/genre/[name]</th>
+          <th>GET</th>
+          <th>/movies/genre/:name</th>
+          <th>None</th>
+          <th>A JSON object holding data about genre by name</th>
+        </tr>
+        <tr>
+          <th>Return data about director</th>
+          <th>/movies/directors/[name]</th>
+          <th>GET</th>
+          <th>/movies/directors/:name</th>
+          <th>None</th>
+          <th>
+            A JSON object holding data about director (bio, birth year, death
+            year)
+          </th>
+        </tr>
+        <tr>
+          <th>Allow new users to register</th>
+          <th>/user</th>
+          <th>POST</th>
+          <th>None</th>
+          <th>
+            A JSON object holding data about the user to add:<br />
+            { username: string required, email: string required,}<br />
+          </th>
+          <th>
+            A JSON object holding data about the user that was added, including
+            ID
+          </th>
+        </tr>
+        <tr>
+          <th>Allow users to update their user info (username)</th>
+          <th>/users/[username]</th>
+          <th>PUT</th>
+          <th>/users/:username</th>
+          <th>None</th>
+          <th>A text message indicating username was updated</th>
+        </tr>
+        <tr>
+          <th>Allow users to add a movie to their list of favorites</th>
+          <th>/users/[username]/favorites/[movieID]</th>
+          <th>POST</th>
+          <th>/users/username/favorites/:movieID</th>
+          <th>None</th>
+          <th>
+            A text message indicating the movie was added to favorites:<br />
+            { "movieID": "",}<br />
+          </th>
+        </tr>
+        <tr>
+          <th>Allow users to remove a movie from their list of favorites</th>
+          <th>/users/[username]/favorites/[movieID]</th>
+          <th>DELETE</th>
+          <th>/users/username/favorites/:movieID</th>
+          <th>None</th>
+          <th>A text message the movie was removed from favorites</th>
+        </tr>
+        <tr>
+          <th>Allow existing users to deregister</th>
+          <th>/users/[username]</th>
+          <th>DELETE</th>
+          <th>/users/:username</th>
+          <th>None</th>
+          <th>A text message indicating the user was removed</th>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
