@@ -80,7 +80,8 @@
           <th>None</th>
           <th>
             A JSON object holding data about the user to add:<br />
-            { username: string required, email: string required,}<br />
+            { username: string required, password: string required, email:
+            string required, birthday: date}<br />
           </th>
           <th>
             A JSON object holding data about the user that was added, including
@@ -93,7 +94,7 @@
           <th>PUT</th>
           <th>/users/:username</th>
           <th>None</th>
-          <th>A text message indicating username was updated</th>
+          <th>A JSON object holding updated user data</th>
         </tr>
         <tr>
           <th>Allow users to add a movie to their list of favorites</th>
@@ -102,8 +103,8 @@
           <th>/users/username/favorites/:movieID</th>
           <th>None</th>
           <th>
-            A text message indicating the movie was added to favorites:<br />
-            { "movieID": "",}<br />
+            List of favorite movie IDs:<br />
+            [ "6091034231b82dd43628fc68", "60913a514303e017dd4870e5" ]<br />
           </th>
         </tr>
         <tr>
@@ -112,7 +113,7 @@
           <th>DELETE</th>
           <th>/users/username/favorites/:movieID</th>
           <th>None</th>
-          <th>A text message the movie was removed from favorites</th>
+          <th>Updated list of favorite movie IDs</th>
         </tr>
         <tr>
           <th>Allow existing users to deregister</th>
@@ -120,7 +121,7 @@
           <th>DELETE</th>
           <th>/users/:username</th>
           <th>None</th>
-          <th>A text message indicating the user was removed</th>
+          <th>A text message indicating the user was deleted</th>
         </tr>
       </tbody>
     </table>
