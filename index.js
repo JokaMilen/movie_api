@@ -63,10 +63,9 @@ app.get(
         console.error(err);
         res.status(500).send("Error: " + err);
       });
-    //"Successful GET request returning data on single movie by title: " +
-    //req.params.title
   }
 );
+
 //Get data about a genre
 app.get(
   "/movies/genres/:Name",
