@@ -31,10 +31,13 @@ const { check, validationResult } = require("express-validator");
 //})
 //);
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  "mongodb+srv://MovieAppadmin:1409admin%40MOVIEAPP@movieapp.4b3wm.mongodb.net/myFlixDB?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 app.use(morgan("common"));
 
