@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 let movieSchema = mongoose.Schema({
   Title: { type: String, required: true },
@@ -24,14 +25,6 @@ let userSchema = mongoose.Schema({
   FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }]
 });
 
-let Movie = mongoose.model("Movie", movieSchema);
-let User = mongoose.model("User", userSchema);
-
-module.exports.Movie = Movie;
-module.exports.User = User;
-
-const bcrypt = require("bcrypt");
-
 userSchema.statics.hashPassword = password => {
   return bcrypt.hashSync(password, 10);
 };
@@ -39,3 +32,9 @@ userSchema.statics.hashPassword = password => {
 userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.Password);
 };
+
+let Movie = mongoose.model("Movie", movieSchema);
+let User = mongoose.model("User", userSchema);
+
+module.exports.Movie = Movie;
+module.exports.User = User;
