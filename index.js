@@ -53,6 +53,10 @@ app.use(methodOverride());
 const passport = require("passport");
 require("./passport");
 
+app.get("/", (req, res) => {
+  res.send("Welcome to MovieApp");
+});
+
 // GET all movies
 app.get(
   "/movies",
