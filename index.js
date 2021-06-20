@@ -13,23 +13,6 @@ const cors = require("cors");
 app.use(cors());
 
 const { check, validationResult } = require("express-validator");
-//let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
-
-//app.use(
-//cors({
-//origin: (origin, callback) => {
-//if (!origin) return callback(null, true);
-//if (allowedOrigins.indexOf(origin) === -1) {
-// If a specific origin isn’t found on the list of allowed origins
-//let message =
-//"The CORS policy for this application doesn’t allow access from origin " +
-//origin;
-//return callback(new Error(message), false);
-//}
-//return callback(null, true);
-//}
-//})
-//);
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -60,7 +43,7 @@ app.get("/", (req, res) => {
 // GET all movies
 app.get(
   "/movies",
-  //passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
       .then(movies => {
@@ -99,7 +82,7 @@ app.get(
   (req, res) => {
     Movies.findOne({ "Genre.Name": req.params.Name })
       .then(genre => {
-        res.json(genre.Genre.Description);
+        res.json(genre.Genre);
       })
       .catch(err => {
         console.error(err);
